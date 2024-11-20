@@ -32,7 +32,7 @@ class WeatherViewModel @Inject constructor(
 
     fun getWeather(latitude: Double, longitude: Double) {
         viewModelScope.launch(ioDispatcher) {
-            networkDataSource.getWeatherForCoordinates(latitude, longitude).map { networkResult ->
+            networkDataSource.getWeatherForCoordinates(latitude, longitude).collect { networkResult ->
                 when (networkResult) {
                     is NetworkResult.Fetching -> {
                         withContext(mainDispatcher) {

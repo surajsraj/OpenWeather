@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Clouds (
-    var all: Int
+    var all: Int? = null
 )

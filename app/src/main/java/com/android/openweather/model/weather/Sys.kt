@@ -4,9 +4,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Sys (
-    var type: Int,
-    var id: Int,
-    var country: String,
-    var sunrise: Int,
-    var sunset: Int
+    var type: Int? = null,
+    var id: Int? = null,
+    var country: String? = null,
+    var sunrise: Int? = null,
+    var sunset: Int? = null
 )

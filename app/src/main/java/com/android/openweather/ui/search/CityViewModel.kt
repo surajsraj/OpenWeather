@@ -27,7 +27,7 @@ class CityViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _uiStateOfCityList: MutableStateFlow<UiState<List<CityUiData>>> =
-        MutableStateFlow(UiState.Initial)
+        MutableStateFlow(UiState.Loading)
     val uiStateOfCityList: StateFlow<UiState<List<CityUiData>>> = _uiStateOfCityList.asStateFlow()
 
     fun getCityData(city: String) {

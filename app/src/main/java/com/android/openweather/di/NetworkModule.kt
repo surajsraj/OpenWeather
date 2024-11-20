@@ -23,6 +23,8 @@ object NetworkModule {
     @Provides
     fun provideJson(): Json = Json {
         ignoreUnknownKeys = true
+        isLenient = true
+        explicitNulls = false
     }
 
     @Singleton

@@ -4,12 +4,12 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Main (
-    var temp: Double,
-    var feelsLike: Double,
-    var tempMin: Double,
-    var tempMax: Double,
-    var pressure: Int,
-    var humidity: Int,
-    var seaLevel: Int,
-    var grndLevel: Int
+    var temp: Double? = null,
+    var feelsLike: Double? = null,
+    var tempMin: Double? = null,
+    var tempMax: Double? = null,
+    var pressure: Int? = null,
+    var humidity: Int? = null,
+    var seaLevel: Int? = null,
+    var grndLevel: Int? = null
 )
