@@ -4,5 +4,5 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Rain (
-    var _1h: Double? = null
+    var _1h: Double
 )

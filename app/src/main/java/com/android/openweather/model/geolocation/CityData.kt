@@ -11,7 +11,7 @@ data class CityData(
     @SerialName("lat")
     val lat: Double = 0.0,
     @SerialName("local_names")
-    val localNames: LocalNames? = null,
+    val localNames: LocalNames,
     @SerialName("lon")
     val lon: Double = 0.0,
     @SerialName("name")
