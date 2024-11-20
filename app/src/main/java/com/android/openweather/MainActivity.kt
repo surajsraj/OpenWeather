@@ -8,7 +8,9 @@ import com.android.openweather.navigation.WeatherAppState
 import com.android.openweather.navigation.WeatherNavHost
 import com.android.openweather.navigation.rememberWeatherAppState
 import com.android.openweather.ui.theme.OpenWeatherTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
