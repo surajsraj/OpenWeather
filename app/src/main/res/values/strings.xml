@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">OpenWeather</string>
+    <string name="search_hint">Search by City name</string>
+    <string name="ui_error">Something went wrong.</string>
+    <string name="get_location">Fetch my location</string>
+    <string name="location_option">OR</string>
 </resources>

@@ -7,305 +7,305 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class LocalNames(
     @SerialName("ab")
-    val ab: String,
+    val ab: String? = null,
     @SerialName("af")
-    val af: String,
+    val af: String? = null,
     @SerialName("am")
-    val am: String,
+    val am: String? = null,
     @SerialName("an")
-    val an: String,
+    val an: String? = null,
     @SerialName("ar")
-    val ar: String,
+    val ar: String? = null,
     @SerialName("ascii")
-    val ascii: String,
+    val ascii: String? = null,
     @SerialName("av")
-    val av: String,
+    val av: String? = null,
     @SerialName("ay")
-    val ay: String,
+    val ay: String? = null,
     @SerialName("az")
-    val az: String,
+    val az: String? = null,
     @SerialName("ba")
-    val ba: String,
+    val ba: String? = null,
     @SerialName("be")
-    val be: String,
+    val be: String? = null,
     @SerialName("bg")
-    val bg: String,
+    val bg: String? = null,
     @SerialName("bh")
-    val bh: String,
+    val bh: String? = null,
     @SerialName("bi")
-    val bi: String,
+    val bi: String? = null,
     @SerialName("bm")
-    val bm: String,
+    val bm: String? = null,
     @SerialName("bn")
-    val bn: String,
+    val bn: String? = null,
     @SerialName("bo")
-    val bo: String,
+    val bo: String? = null,
     @SerialName("br")
-    val br: String,
+    val br: String? = null,
     @SerialName("bs")
-    val bs: String,
+    val bs: String? = null,
     @SerialName("ca")
-    val ca: String,
+    val ca: String? = null,
     @SerialName("ce")
-    val ce: String,
+    val ce: String? = null,
     @SerialName("co")
-    val co: String,
+    val co: String? = null,
     @SerialName("cr")
-    val cr: String,
+    val cr: String? = null,
     @SerialName("cs")
-    val cs: String,
+    val cs: String? = null,
     @SerialName("cu")
-    val cu: String,
+    val cu: String? = null,
     @SerialName("cv")
-    val cv: String,
+    val cv: String? = null,
     @SerialName("cy")
-    val cy: String,
+    val cy: String? = null,
     @SerialName("da")
-    val da: String,
+    val da: String? = null,
     @SerialName("de")
-    val de: String,
+    val de: String? = null,
     @SerialName("ee")
-    val ee: String,
+    val ee: String? = null,
     @SerialName("el")
-    val el: String,
+    val el: String? = null,
     @SerialName("en")
-    val en: String = "",
+    val en: String? = null,
     @SerialName("eo")
-    val eo: String,
+    val eo: String? = null,
     @SerialName("es")
-    val es: String,
+    val es: String? = null,
     @SerialName("et")
-    val et: String,
+    val et: String? = null,
     @SerialName("eu")
-    val eu: String,
+    val eu: String? = null,
     @SerialName("fa")
-    val fa: String,
+    val fa: String? = null,
     @SerialName("feature_name")
-    val featureName: String,
+    val featureName: String? = null,
     @SerialName("ff")
-    val ff: String,
+    val ff: String? = null,
     @SerialName("fi")
-    val fi: String,
+    val fi: String? = null,
     @SerialName("fj")
-    val fj: String,
+    val fj: String? = null,
     @SerialName("fo")
-    val fo: String,
+    val fo: String? = null,
     @SerialName("fr")
-    val fr: String = "",
+    val fr: String? = null,
     @SerialName("fy")
-    val fy: String,
+    val fy: String? = null,
     @SerialName("ga")
-    val ga: String,
+    val ga: String? = null,
     @SerialName("gd")
-    val gd: String,
+    val gd: String? = null,
     @SerialName("gl")
-    val gl: String,
+    val gl: String? = null,
     @SerialName("gn")
-    val gn: String,
+    val gn: String? = null,
     @SerialName("gu")
-    val gu: String,
+    val gu: String? = null,
     @SerialName("gv")
-    val gv: String,
+    val gv: String? = null,
     @SerialName("ha")
-    val ha: String,
+    val ha: String? = null,
     @SerialName("he")
-    val he: String = "",
+    val he: String? = null,
     @SerialName("hi")
-    val hi: String,
+    val hi: String? = null,
     @SerialName("hr")
-    val hr: String,
+    val hr: String? = null,
     @SerialName("ht")
-    val ht: String,
+    val ht: String? = null,
     @SerialName("hu")
-    val hu: String,
+    val hu: String? = null,
     @SerialName("hy")
-    val hy: String,
+    val hy: String? = null,
     @SerialName("ia")
-    val ia: String,
+    val ia: String? = null,
     @SerialName("id")
-    val id: String,
+    val id: String? = null,
     @SerialName("ie")
-    val ie: String,
+    val ie: String? = null,
     @SerialName("ig")
-    val ig: String,
+    val ig: String? = null,
     @SerialName("io")
-    val io: String,
+    val io: String? = null,
     @SerialName("is")
-    val isX: String,
+    val isX: String? = null,
     @SerialName("it")
-    val `it`: String,
+    val `it`: String? = null,
     @SerialName("iu")
-    val iu: String,
+    val iu: String? = null,
     @SerialName("ja")
-    val ja: String,
+    val ja: String? = null,
     @SerialName("jv")
-    val jv: String,
+    val jv: String? = null,
     @SerialName("ka")
-    val ka: String,
+    val ka: String? = null,
     @SerialName("kk")
-    val kk: String,
+    val kk: String? = null,
     @SerialName("kl")
-    val kl: String,
+    val kl: String? = null,
     @SerialName("km")
-    val km: String,
+    val km: String? = null,
     @SerialName("kn")
-    val kn: String,
+    val kn: String? = null,
     @SerialName("ko")
-    val ko: String = "",
+    val ko: String? = null,
     @SerialName("ku")
-    val ku: String,
+    val ku: String? = null,
     @SerialName("kv")
-    val kv: String,
+    val kv: String? = null,
     @SerialName("kw")
-    val kw: String,
+    val kw: String? = null,
     @SerialName("ky")
-    val ky: String,
+    val ky: String? = null,
     @SerialName("lb")
-    val lb: String,
+    val lb: String? = null,
     @SerialName("li")
-    val li: String,
+    val li: String? = null,
     @SerialName("ln")
-    val ln: String,
+    val ln: String? = null,
     @SerialName("lo")
-    val lo: String,
+    val lo: String? = null,
     @SerialName("lt")
-    val lt: String,
+    val lt: String? = null,
     @SerialName("lv")
-    val lv: String,
+    val lv: String? = null,
     @SerialName("mg")
-    val mg: String,
+    val mg: String? = null,
     @SerialName("mi")
-    val mi: String,
+    val mi: String? = null,
     @SerialName("mk")
-    val mk: String,
+    val mk: String? = null,
     @SerialName("ml")
-    val ml: String,
+    val ml: String? = null,
     @SerialName("mn")
-    val mn: String,
+    val mn: String? = null,
     @SerialName("mr")
-    val mr: String,
+    val mr: String? = null,
     @SerialName("ms")
-    val ms: String,
+    val ms: String? = null,
     @SerialName("mt")
-    val mt: String,
+    val mt: String? = null,
     @SerialName("my")
-    val my: String,
+    val my: String? = null,
     @SerialName("na")
-    val na: String,
+    val na: String? = null,
     @SerialName("ne")
-    val ne: String,
+    val ne: String? = null,
     @SerialName("nl")
-    val nl: String,
+    val nl: String? = null,
     @SerialName("nn")
-    val nn: String,
+    val nn: String? = null,
     @SerialName("no")
-    val no: String,
+    val no: String? = null,
     @SerialName("nv")
-    val nv: String,
+    val nv: String? = null,
     @SerialName("ny")
-    val ny: String,
+    val ny: String? = null,
     @SerialName("oc")
-    val oc: String,
+    val oc: String? = null,
     @SerialName("oj")
-    val oj: String,
+    val oj: String? = null,
     @SerialName("om")
-    val om: String,
+    val om: String? = null,
     @SerialName("or")
-    val or: String,
+    val or: String? = null,
     @SerialName("os")
-    val os: String,
+    val os: String? = null,
     @SerialName("pa")
-    val pa: String,
+    val pa: String? = null,
     @SerialName("pl")
-    val pl: String,
+    val pl: String? = null,
     @SerialName("ps")
-    val ps: String,
+    val ps: String? = null,
     @SerialName("pt")
-    val pt: String,
+    val pt: String? = null,
     @SerialName("qu")
-    val qu: String,
+    val qu: String? = null,
     @SerialName("rm")
-    val rm: String,
+    val rm: String? = null,
     @SerialName("ro")
-    val ro: String,
+    val ro: String? = null,
     @SerialName("ru")
-    val ru: String = "",
+    val ru: String? = null,
     @SerialName("sa")
-    val sa: String,
+    val sa: String? = null,
     @SerialName("sc")
-    val sc: String,
+    val sc: String? = null,
     @SerialName("sd")
-    val sd: String,
+    val sd: String? = null,
     @SerialName("se")
-    val se: String,
+    val se: String? = null,
     @SerialName("sh")
-    val sh: String,
+    val sh: String? = null,
     @SerialName("si")
-    val si: String,
+    val si: String? = null,
     @SerialName("sk")
-    val sk: String,
+    val sk: String? = null,
     @SerialName("sl")
-    val sl: String,
+    val sl: String? = null,
     @SerialName("sm")
-    val sm: String,
+    val sm: String? = null,
     @SerialName("sn")
-    val sn: String,
+    val sn: String? = null,
     @SerialName("so")
-    val so: String,
+    val so: String? = null,
     @SerialName("sq")
-    val sq: String,
+    val sq: String? = null,
     @SerialName("sr")
-    val sr: String,
+    val sr: String? = null,
     @SerialName("st")
-    val st: String,
+    val st: String? = null,
     @SerialName("su")
-    val su: String,
+    val su: String? = null,
     @SerialName("sv")
-    val sv: String,
+    val sv: String? = null,
     @SerialName("sw")
-    val sw: String,
+    val sw: String? = null,
     @SerialName("ta")
-    val ta: String,
+    val ta: String? = null,
     @SerialName("te")
-    val te: String,
+    val te: String? = null,
     @SerialName("tg")
-    val tg: String,
+    val tg: String? = null,
     @SerialName("th")
-    val th: String,
+    val th: String? = null,
     @SerialName("tk")
-    val tk: String,
+    val tk: String? = null,
     @SerialName("tl")
-    val tl: String,
+    val tl: String? = null,
     @SerialName("to")
-    val to: String,
+    val to: String? = null,
     @SerialName("tr")
-    val tr: String,
+    val tr: String? = null,
     @SerialName("tt")
-    val tt: String,
+    val tt: String? = null,
     @SerialName("tw")
-    val tw: String,
+    val tw: String? = null,
     @SerialName("ug")
-    val ug: String,
+    val ug: String? = null,
     @SerialName("uk")
-    val uk: String,
+    val uk: String? = null,
     @SerialName("ur")
-    val ur: String,
+    val ur: String? = null,
     @SerialName("uz")
-    val uz: String,
+    val uz: String? = null,
     @SerialName("vi")
-    val vi: String,
+    val vi: String? = null,
     @SerialName("vo")
-    val vo: String,
+    val vo: String? = null,
     @SerialName("wa")
-    val wa: String,
+    val wa: String? = null,
     @SerialName("wo")
-    val wo: String,
+    val wo: String? = null,
     @SerialName("yi")
-    val yi: String,
+    val yi: String? = null,
     @SerialName("yo")
-    val yo: String,
+    val yo: String? = null,
     @SerialName("zh")
-    val zh: String,
+    val zh: String? = null,
     @SerialName("zu")
-    val zu: String
+    val zu: String? = null
 )

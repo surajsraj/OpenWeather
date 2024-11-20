@@ -1,5 +1,8 @@
 package com.android.openweather.ui.search
 
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.openweather.di.IODispatcher
@@ -14,7 +17,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -27,16 +30,21 @@ class CityViewModel @Inject constructor(
 ) : ViewModel() {
 
     private val _uiStateOfCityList: MutableStateFlow<UiState<List<CityUiData>>> =
-        MutableStateFlow(UiState.Loading)
+        MutableStateFlow(UiState.Initial)
     val uiStateOfCityList: StateFlow<UiState<List<CityUiData>>> = _uiStateOfCityList.asStateFlow()
+
+    private val _searchTextState: MutableState<String> = mutableStateOf(value = "")
+    val searchTextState: State<String> = _searchTextState
 
     fun getCityData(city: String) {
         viewModelScope.launch(ioDispatcher) {
-            networkDataSource.getCitiesData(city).map { networkResult ->
+            networkDataSource.getCitiesData(city).collect { networkResult ->
                 when (networkResult) {
                     is NetworkResult.Fetching -> {
                         withContext(mainDispatcher) {
-                            _uiStateOfCityList.value = UiState.Loading
+                            _uiStateOfCityList.update {
+                                UiState.Loading
+                            }
                         }
                     }
 
@@ -45,17 +53,26 @@ class CityViewModel @Inject constructor(
                             val cityUiData = networkResult.data.map {
                                 it.toCityUiData()
                             }
-                            _uiStateOfCityList.value = UiState.Success(cityUiData)
+                            _uiStateOfCityList.update {
+                                UiState.Success(cityUiData)
+                            }
                         }
                     }
 
                     is NetworkResult.Error -> {
                         withContext(mainDispatcher) {
-                            _uiStateOfCityList.value = UiState.Failure
+                            _uiStateOfCityList.update {
+                                UiState.Failure
+                            }
                         }
                     }
                 }
             }
         }
+    }
+
+    fun updateSearchTextState(newValue: String) {
+        _searchTextState.value = newValue
+        _uiStateOfCityList.update { UiState.Initial }
     }
 }

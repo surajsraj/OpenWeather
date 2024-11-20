@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.openweather.di.IODispatcher
 import com.android.openweather.di.MainDispatcher
-import com.android.openweather.model.weather.WeatherUiData
 import com.android.openweather.model.util.toWeatherUiData
+import com.android.openweather.model.weather.WeatherUiData
 import com.android.openweather.network.NetworkDataSource
 import com.android.openweather.network.util.NetworkResult
 import com.android.openweather.ui.util.UiState
@@ -14,7 +14,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -36,19 +36,19 @@ class WeatherViewModel @Inject constructor(
                 when (networkResult) {
                     is NetworkResult.Fetching -> {
                         withContext(mainDispatcher) {
-                            _uiState.value = UiState.Loading
+                            _uiState.update { UiState.Loading }
                         }
                     }
 
                     is NetworkResult.Success -> {
                         withContext(mainDispatcher) {
-                            _uiState.value = UiState.Success(networkResult.data.toWeatherUiData())
+                            _uiState.update { UiState.Success(networkResult.data.toWeatherUiData()) }
                         }
                     }
 
                     is NetworkResult.Error -> {
                         withContext(mainDispatcher) {
-                            _uiState.value = UiState.Failure
+                            _uiState.update { UiState.Failure }
                         }
                     }
                 }
