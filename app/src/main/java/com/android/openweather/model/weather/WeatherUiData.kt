@@ -5,9 +5,3 @@ data class WeatherUiData(
     var weather: List<Weather>,
     var main: Main
 )
-
-fun WeatherData.toWeatherUiData(): WeatherUiData = WeatherUiData(
-    name = name,
-    weather = weather,
-    main = main
-)

@@ -60,6 +60,8 @@ dependencies {
     implementation(libs.lifecycle.runtime.compose)
     implementation(libs.hilt.android)
     implementation(libs.hilt.navigation.compose)
+    implementation(libs.androidx.navigation.compose)
+    implementation(libs.coil)
     kapt(libs.hilt.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

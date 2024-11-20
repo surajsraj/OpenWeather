@@ -5,9 +5,3 @@ data class CityUiData(
     var latitude: Double,
     var longitude: Double
 )
-
-fun CityData.toCityUiData(): CityUiData = CityUiData(
-    name = name,
-    latitude = lat,
-    longitude = lon
-)

@@ -1,21 +1,23 @@
 [versions]
 agp = "8.7.2"
-kotlin = "2.0.0"
+kotlin = "2.0.20"
 coreKtx = "1.15.0"
 junit = "4.13.2"
 junitVersion = "1.2.1"
 espressoCore = "3.6.1"
 lifecycleRuntimeKtx = "2.8.7"
 activityCompose = "1.9.3"
-composeBom = "2024.04.01"
+composeBom = "2024.11.00"
 retrofit = "2.11.0"
 okhttp = "4.12.0"
 kotlinxSerializationJson = "1.7.3"
 kotlinxCoroutines = "1.9.0"
 hilt = "2.52"
 hiltExt = "1.2.0"
-hilt-navigation-compose = "1.0.0"
-lifecycle-runtime-compose = "2.6.2"
+hilt-navigation-compose = "1.2.0"
+androidxNavigation = "2.8.4"
+lifecycle-runtime-compose = "2.8.7"
+coil = "2.7.0"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -45,8 +47,10 @@ hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.r
 hilt-core = { group = "com.google.dagger", name = "hilt-core", version.ref = "hilt" }
 hilt-ext-compiler = { group = "androidx.hilt", name = "hilt-compiler", version.ref = "hiltExt" }
 hilt-ext-work = { group = "androidx.hilt", name = "hilt-work", version.ref = "hiltExt" }
+androidx-navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "androidxNavigation" }
 hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hilt-navigation-compose" }
 lifecycle-runtime-compose = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle-runtime-compose" }
+coil = { module = "io.coil-kt:coil-compose", version.ref = "coil" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
