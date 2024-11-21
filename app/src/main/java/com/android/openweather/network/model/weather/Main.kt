@@ -1,4 +1,4 @@
-package com.android.openweather.model.weather
+package com.android.openweather.network.model.weather
 
 import kotlinx.serialization.Serializable
 

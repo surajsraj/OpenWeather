@@ -1,7 +1,7 @@
 package com.android.openweather.network
 
-import com.android.openweather.model.geolocation.CityData
-import com.android.openweather.model.weather.WeatherData
+import com.android.openweather.network.model.geolocation.CityData
+import com.android.openweather.network.model.weather.WeatherData
 import com.android.openweather.network.constants.CITY_RESULTS_LIMIT
 import com.android.openweather.network.util.NetworkResult
 import kotlinx.coroutines.flow.Flow

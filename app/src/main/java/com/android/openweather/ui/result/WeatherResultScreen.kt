@@ -20,8 +20,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImage
 import com.android.openweather.R
-import com.android.openweather.model.util.getIconUrl
-import com.android.openweather.model.weather.WeatherUiData
+import com.android.openweather.ui.model.getIconUrl
+import com.android.openweather.ui.model.WeatherUiData
 import com.android.openweather.navigation.CityDataCoordinates
 import com.android.openweather.ui.util.UiState
 

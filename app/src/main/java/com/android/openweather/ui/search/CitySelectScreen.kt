@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.android.openweather.R
-import com.android.openweather.model.geolocation.CityUiData
+import com.android.openweather.ui.model.CityUiData
 import com.android.openweather.ui.util.PermissionRequest
 import com.android.openweather.ui.util.UiState
 import com.android.openweather.ui.util.getUserLocation

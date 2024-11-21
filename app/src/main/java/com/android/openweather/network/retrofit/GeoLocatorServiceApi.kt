@@ -1,6 +1,6 @@
 package com.android.openweather.network.retrofit
 
-import com.android.openweather.model.geolocation.CityData
+import com.android.openweather.network.model.geolocation.CityData
 import retrofit2.http.GET
 import retrofit2.http.Query
 

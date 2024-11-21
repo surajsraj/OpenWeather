@@ -4,8 +4,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.openweather.di.IODispatcher
 import com.android.openweather.di.MainDispatcher
-import com.android.openweather.model.util.toWeatherUiData
-import com.android.openweather.model.weather.WeatherUiData
+import com.android.openweather.ui.model.toWeatherUiData
+import com.android.openweather.ui.model.WeatherUiData
 import com.android.openweather.network.NetworkDataSource
 import com.android.openweather.network.util.NetworkResult
 import com.android.openweather.ui.util.UiState

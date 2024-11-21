@@ -1,4 +1,4 @@
-package com.android.openweather.model.geolocation
+package com.android.openweather.network.model.geolocation
 
 
 import kotlinx.serialization.SerialName

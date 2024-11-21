@@ -1,7 +1,7 @@
 package com.android.openweather.network.retrofit
 
-import com.android.openweather.model.geolocation.CityData
-import com.android.openweather.model.weather.WeatherData
+import com.android.openweather.network.model.geolocation.CityData
+import com.android.openweather.network.model.weather.WeatherData
 import com.android.openweather.network.NetworkDataSource
 import com.android.openweather.network.constants.API_KEY
 import com.android.openweather.network.util.NetworkResult

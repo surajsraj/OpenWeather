@@ -1,6 +1,6 @@
 package com.android.openweather.network.retrofit
 
-import com.android.openweather.model.weather.WeatherData
+import com.android.openweather.network.model.weather.WeatherData
 import retrofit2.http.GET
 import retrofit2.http.Query
 

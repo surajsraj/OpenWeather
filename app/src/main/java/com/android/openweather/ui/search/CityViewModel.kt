@@ -7,8 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.android.openweather.di.IODispatcher
 import com.android.openweather.di.MainDispatcher
-import com.android.openweather.model.geolocation.CityUiData
-import com.android.openweather.model.util.toCityUiData
+import com.android.openweather.ui.model.CityUiData
+import com.android.openweather.ui.model.toCityUiData
 import com.android.openweather.network.NetworkDataSource
 import com.android.openweather.network.util.NetworkResult
 import com.android.openweather.ui.util.UiState
@@ -32,14 +32,6 @@ class CityViewModel @Inject constructor(
     private val _uiStateOfCityList: MutableStateFlow<UiState<List<CityUiData>>> =
         MutableStateFlow(UiState.Initial)
     val uiStateOfCityList: StateFlow<UiState<List<CityUiData>>> = _uiStateOfCityList.asStateFlow()
-
-    private val _getLocationPermission: MutableStateFlow<Boolean> =
-        MutableStateFlow(value = false)
-    val getLocationPermission: StateFlow<Boolean> = _getLocationPermission.asStateFlow()
-
-    private val _getLocation: MutableStateFlow<Boolean> =
-        MutableStateFlow(value = false)
-    val getLocation: StateFlow<Boolean> = _getLocation.asStateFlow()
 
     private val _searchTextState: MutableState<String> = mutableStateOf(value = "")
     val searchTextState: State<String> = _searchTextState
@@ -82,13 +74,5 @@ class CityViewModel @Inject constructor(
     fun updateSearchTextState(newValue: String) {
         _searchTextState.value = newValue
         _uiStateOfCityList.update { UiState.Initial }
-    }
-
-    fun getLocationPermission() {
-        _getLocationPermission.update { true }
-    }
-
-    fun getLocation() {
-        _getLocation.update { true }
     }
 }
