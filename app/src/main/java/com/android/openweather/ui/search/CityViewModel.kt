@@ -33,6 +33,14 @@ class CityViewModel @Inject constructor(
         MutableStateFlow(UiState.Initial)
     val uiStateOfCityList: StateFlow<UiState<List<CityUiData>>> = _uiStateOfCityList.asStateFlow()
 
+    private val _getLocationPermission: MutableStateFlow<Boolean> =
+        MutableStateFlow(value = false)
+    val getLocationPermission: StateFlow<Boolean> = _getLocationPermission.asStateFlow()
+
+    private val _getLocation: MutableStateFlow<Boolean> =
+        MutableStateFlow(value = false)
+    val getLocation: StateFlow<Boolean> = _getLocation.asStateFlow()
+
     private val _searchTextState: MutableState<String> = mutableStateOf(value = "")
     val searchTextState: State<String> = _searchTextState
 
@@ -74,5 +82,13 @@ class CityViewModel @Inject constructor(
     fun updateSearchTextState(newValue: String) {
         _searchTextState.value = newValue
         _uiStateOfCityList.update { UiState.Initial }
+    }
+
+    fun getLocationPermission() {
+        _getLocationPermission.update { true }
+    }
+
+    fun getLocation() {
+        _getLocation.update { true }
     }
 }
