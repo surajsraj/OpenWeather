@@ -7,6 +7,6 @@ import com.android.openweather.network.util.NetworkResult
 import kotlinx.coroutines.flow.Flow
 
 interface NetworkDataSource {
-    suspend fun getCitiesData(city: String, limit: Int = CITY_RESULTS_LIMIT): Flow<NetworkResult<List<CityData>>>
-    suspend fun getWeatherForCoordinates(lat: Double, lon: Double): Flow<NetworkResult<WeatherData>>
+    fun getCitiesData(city: String, limit: Int = CITY_RESULTS_LIMIT): Flow<NetworkResult<List<CityData>>>
+    fun getWeatherForCoordinates(lat: Double, lon: Double): Flow<NetworkResult<WeatherData>>
 }
