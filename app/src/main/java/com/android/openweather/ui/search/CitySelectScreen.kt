@@ -52,6 +52,7 @@ fun CitySelectScreen(
     val context = LocalContext.current
     val uiState: UiState<List<CityUiData>> by viewModel.uiStateOfCityList.collectAsStateWithLifecycle()
     var shouldGetLocation by remember { mutableStateOf(false) }
+    var shouldShowLoading by remember { mutableStateOf(false) }
     val searchTextState by viewModel.searchTextState
 
     /*
@@ -61,7 +62,11 @@ fun CitySelectScreen(
      */
     if (shouldGetLocation) {
         PermissionRequest {
-            getUserLocation(context) { location ->
+            getUserLocation(context, onLocationFetching = {
+                shouldShowLoading = true
+            }) { location ->
+                shouldGetLocation = false
+                shouldShowLoading = false
                 location?.let {
                     onCitySelected.invoke(location.latitude, location.longitude)
                 }
@@ -76,77 +81,88 @@ fun CitySelectScreen(
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Top
     ) {
-        Button(onClick = {
-            shouldGetLocation = true
-        }, modifier = Modifier.padding(top = 4.dp)) {
-            Text(stringResource(R.string.get_location))
-        }
-        Spacer(Modifier.height(16.dp))
-        Text(stringResource(R.string.location_option))
-        Spacer(Modifier.height(16.dp))
-        SearchBar(
-            text = searchTextState,
-            onTextChange = { viewModel.updateSearchTextState(it) },
-            onCloseClicked = { viewModel.updateSearchTextState("") },
-            onSearchClicked = { viewModel.getCityData(it) },
-        )
-        Spacer(Modifier.height(50.dp))
-        when (uiState) {
-            is UiState.Loading -> {
-                Column(
-                    Modifier.fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    CircularProgressIndicator(
-                        modifier = Modifier
-                    )
-                }
+        if (shouldShowLoading) {
+            Column(
+                modifier = Modifier.fillMaxSize(),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center
+            ) {
+                CircularProgressIndicator()
             }
+        } else {
+            Button(onClick = {
+                shouldGetLocation = true
+            }, modifier = Modifier.padding(top = 4.dp)) {
+                Text(stringResource(R.string.get_location))
+            }
+            Spacer(Modifier.height(16.dp))
+            Text(stringResource(R.string.location_option))
+            Spacer(Modifier.height(16.dp))
+            SearchBar(
+                text = searchTextState,
+                onTextChange = { viewModel.updateSearchTextState(it) },
+                onCloseClicked = { viewModel.updateSearchTextState("") },
+                onSearchClicked = { viewModel.getCityData(it) },
+            )
+            Spacer(Modifier.height(50.dp))
+            when (uiState) {
+                is UiState.Loading -> {
+                    Column(
+                        Modifier.fillMaxSize(),
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.Center
+                    ) {
+                        CircularProgressIndicator(
+                            modifier = Modifier
+                        )
+                    }
+                }
 
-            is UiState.Success<List<CityUiData>> -> {
-                Column(
-                    Modifier.fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    LazyColumn {
-                        if (uiState is UiState.Success<List<CityUiData>>) {
-                            (uiState as UiState.Success<List<CityUiData>>).data.let {
-                                items(it) { cityData ->
-                                    Row(
-                                        Modifier
-                                            .fillMaxWidth()
-                                            .border(2.dp, Color.Black)
-                                            .clickable {
-                                                onCitySelected.invoke(
-                                                    cityData.latitude,
-                                                    cityData.longitude
-                                                )
-                                            }, horizontalArrangement = Arrangement.SpaceBetween
-                                    ) {
-                                        Text(cityData.name, modifier = Modifier.padding(10.dp))
-                                        Icon(
-                                            modifier = Modifier.padding(10.dp),
-                                            imageVector = Icons.Default.PlayArrow,
-                                            contentDescription = null
-                                        )
+                is UiState.Success<List<CityUiData>> -> {
+                    Column(
+                        Modifier.fillMaxSize(),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        LazyColumn {
+                            if (uiState is UiState.Success<List<CityUiData>>) {
+                                (uiState as UiState.Success<List<CityUiData>>).data.let {
+                                    items(it) { cityData ->
+                                        Row(
+                                            Modifier
+                                                .fillMaxWidth()
+                                                .border(2.dp, Color.Black)
+                                                .clickable {
+                                                    onCitySelected.invoke(
+                                                        cityData.latitude,
+                                                        cityData.longitude
+                                                    )
+                                                }, horizontalArrangement = Arrangement.SpaceBetween
+                                        ) {
+                                            Text(cityData.name, modifier = Modifier.padding(10.dp))
+                                            Icon(
+                                                modifier = Modifier.padding(10.dp),
+                                                imageVector = Icons.Default.PlayArrow,
+                                                contentDescription = null
+                                            )
+                                        }
                                     }
                                 }
                             }
                         }
                     }
                 }
-            }
 
-            is UiState.Failure -> {
-                Column(
-                    Modifier.fillMaxSize(),
-                    horizontalAlignment = Alignment.CenterHorizontally
-                ) {
-                    Text(stringResource(R.string.ui_error))
+                is UiState.Failure -> {
+                    Column(
+                        Modifier.fillMaxSize(),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        Text(stringResource(R.string.ui_error))
+                    }
                 }
-            }
 
-            is UiState.Initial -> {}
+                is UiState.Initial -> {}
+            }
         }
     }
 }

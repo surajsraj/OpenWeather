@@ -55,6 +55,7 @@ fun PermissionRequest(
 
 fun getUserLocation(
     context: Context,
+    onLocationFetching: () -> Unit,
     onLocationResult: (location: Location?) -> Unit
 ) {
     val locationManager: LocationManager =
@@ -64,6 +65,13 @@ fun getUserLocation(
             Manifest.permission.ACCESS_FINE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
     ) {
-        onLocationResult.invoke(locationManager.getLastKnownLocation(LocationManager.FUSED_PROVIDER))
+        onLocationFetching.invoke()
+        locationManager.requestLocationUpdates(
+            LocationManager.FUSED_PROVIDER,
+            1000L,
+            100.0f
+        ) { location ->
+            onLocationResult.invoke(location)
+        }
     }
 }
