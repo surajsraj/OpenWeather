@@ -4,6 +4,7 @@ import android.Manifest
 import android.content.Context
 import android.content.pm.PackageManager
 import android.location.Location
+import android.location.LocationListener
 import android.location.LocationManager
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -15,6 +16,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.core.content.ContextCompat
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
 
 @Composable
 fun PermissionRequest(
@@ -54,24 +58,28 @@ fun PermissionRequest(
 }
 
 fun getUserLocation(
-    context: Context,
-    onLocationFetching: () -> Unit,
-    onLocationResult: (location: Location?) -> Unit
-) {
+    context: Context
+): Flow<UiState<Location>> = callbackFlow {
     val locationManager: LocationManager =
         (context.getSystemService(Context.LOCATION_SERVICE) as LocationManager)
+    val locationListener = LocationListener { location ->
+        trySend(UiState.Success(location))
+        channel.close()
+    }
     if (ContextCompat.checkSelfPermission(
             context,
             Manifest.permission.ACCESS_FINE_LOCATION
         ) == PackageManager.PERMISSION_GRANTED
     ) {
-        onLocationFetching.invoke()
+        trySend(UiState.Loading)
         locationManager.requestLocationUpdates(
-            LocationManager.FUSED_PROVIDER,
-            1000L,
-            100.0f
-        ) { location ->
-            onLocationResult.invoke(location)
-        }
+            LocationManager.GPS_PROVIDER,
+            5000L,
+            1000.0f,
+            locationListener
+        )
+    }
+    awaitClose {
+        locationManager.removeUpdates(locationListener)
     }
 }

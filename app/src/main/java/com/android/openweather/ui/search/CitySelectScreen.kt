@@ -1,5 +1,6 @@
 package com.android.openweather.ui.search
 
+import android.location.Location
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -19,6 +20,7 @@ import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -36,6 +38,7 @@ import com.android.openweather.ui.model.CityUiData
 import com.android.openweather.ui.util.PermissionRequest
 import com.android.openweather.ui.util.UiState
 import com.android.openweather.ui.util.getUserLocation
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
 fun CityDataRoute(
@@ -51,7 +54,8 @@ fun CitySelectScreen(
 ) {
     val context = LocalContext.current
     val uiState: UiState<List<CityUiData>> by viewModel.uiStateOfCityList.collectAsStateWithLifecycle()
-    var shouldGetLocation by remember { mutableStateOf(false) }
+    var shouldRequestPermission by remember { mutableStateOf(false) }
+    var shouldFetchLocation by remember { mutableStateOf(false) }
     var shouldShowLoading by remember { mutableStateOf(false) }
     val searchTextState by viewModel.searchTextState
 
@@ -60,15 +64,20 @@ fun CitySelectScreen(
      * If permission is not provided once, twice, showing rationale, etc. or if location is not turned on.
      * All these should go as a separate LocationDetails UseCase.
      */
-    if (shouldGetLocation) {
+    if (shouldRequestPermission) {
         PermissionRequest {
-            getUserLocation(context, onLocationFetching = {
-                shouldShowLoading = true
-            }) { location ->
-                shouldGetLocation = false
-                shouldShowLoading = false
-                location?.let {
-                    onCitySelected.invoke(location.latitude, location.longitude)
+            shouldFetchLocation = true
+        }
+    }
+
+    if (shouldFetchLocation) {
+        LaunchedEffect(shouldFetchLocation) {
+            val location = getUserLocation(context)
+            location.collectLatest { uiState ->
+                if (uiState is UiState.Loading) {
+                    shouldShowLoading = true
+                } else if (uiState is UiState.Success<Location>) {
+                    onCitySelected.invoke(uiState.data.latitude, uiState.data.longitude)
                 }
             }
         }
@@ -91,7 +100,7 @@ fun CitySelectScreen(
             }
         } else {
             Button(onClick = {
-                shouldGetLocation = true
+                shouldRequestPermission = true
             }, modifier = Modifier.padding(top = 4.dp)) {
                 Text(stringResource(R.string.get_location))
             }
@@ -120,8 +129,7 @@ fun CitySelectScreen(
 
                 is UiState.Success<List<CityUiData>> -> {
                     Column(
-                        Modifier.fillMaxSize(),
-                        horizontalAlignment = Alignment.CenterHorizontally
+                        Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         LazyColumn {
                             if (uiState is UiState.Success<List<CityUiData>>) {
@@ -133,8 +141,7 @@ fun CitySelectScreen(
                                                 .border(2.dp, Color.Black)
                                                 .clickable {
                                                     onCitySelected.invoke(
-                                                        cityData.latitude,
-                                                        cityData.longitude
+                                                        cityData.latitude, cityData.longitude
                                                     )
                                                 }, horizontalArrangement = Arrangement.SpaceBetween
                                         ) {
@@ -154,8 +161,7 @@ fun CitySelectScreen(
 
                 is UiState.Failure -> {
                     Column(
-                        Modifier.fillMaxSize(),
-                        horizontalAlignment = Alignment.CenterHorizontally
+                        Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(stringResource(R.string.ui_error))
                     }
